@@ -11,6 +11,11 @@ type Props = {
     title: string
 }
 
+const reactionEmoji = {
+    thumbsUp: '👍',
+    rocket: '🚀',
+}
+
 const BlogList = ({blogs, title}: Props) => {
 
     return (  
@@ -19,9 +24,13 @@ const BlogList = ({blogs, title}: Props) => {
             {blogs.map((blog) => (
             <div className="blog-preview" key={blog.id}>
                 <Link to={`/blogs/${blog.id}`}>
-                    <h2>{blog.title}</h2>
-                    <p> Written by {blog.author}</p>
+                    <div className="blog-header">
+                        <h2>{blog.title}</h2>
+                        <p> Written by {blog.author}</p>
+                    </div>
                 </Link>
+                    <button className="right-button">{reactionEmoji.thumbsUp} 12 </button>
+                    <button className="right-button">{reactionEmoji.rocket} 10 </button>
             </div>
           ))}
         </div>
