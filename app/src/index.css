@@ -72,7 +72,9 @@
   cursor: pointer;
 }
 .blog-preview .right-button:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  top: -0.16em;
+  transition: padding .5s, top .35s, box-shadow .4s;
+  box-shadow: 0.4rem 0.4rem 0 -0.2rem #0ebac5;
 }
 /* blog details page */
 .blog-details h2 {
