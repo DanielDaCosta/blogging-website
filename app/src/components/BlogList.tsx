@@ -1,5 +1,8 @@
 import {Link} from 'react-router-dom'
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'; // Import useDispatch
+import { RootState } from '../state/store';
+import { addReaction, ReactionsStateType } from '../state/reactions/reactionsSlice';
 
 type Props = {
     blogs: {
@@ -18,6 +21,9 @@ const reactionEmoji = {
 
 const BlogList = ({blogs, title}: Props) => {
 
+    const reactionsState = useSelector((state: { reactions:  ReactionsStateType[] }) => state.reactions);
+    const dispatch = useDispatch();
+
     return (  
         <div className="blog-list">
             <h2>{title}</h2>
@@ -29,8 +35,16 @@ const BlogList = ({blogs, title}: Props) => {
                         <p> Written by {blog.author}</p>
                     </div>
                 </Link>
-                    <button className="right-button">{reactionEmoji.thumbsUp} 12 </button>
-                    <button className="right-button">{reactionEmoji.rocket} 10 </button>
+                    <button className="right-button" onClick={() => dispatch(addReaction({id: blog.id, reactionType: "thumbsUp"}))}>
+                        {reactionEmoji.thumbsUp}                        
+                        {/* {reactionsState.find(reaction => reaction.id === blog.id).reactions.thumbsUp} */}
+                        {reactionsState !== undefined ? reactionsState.find(reaction => reaction.id === blog.id)?.reactions.thumbsUp || 0 : 0}
+                    </button>
+                    <button className="right-button" onClick={() => dispatch(addReaction({id: blog.id, reactionType: "rocket"}))}>
+                        {reactionEmoji.rocket}                        
+                        {/* {reactionsState.find(reaction => reaction.id === blog.id).reactions.thumbsUp} */}
+                        {reactionsState !== undefined ? reactionsState.find(reaction => reaction.id === blog.id)?.reactions.rocket || 0 : 0}
+                    </button>
             </div>
           ))}
         </div>
