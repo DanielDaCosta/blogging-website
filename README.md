@@ -1,5 +1,5 @@
 # Personal Blog Website
-This repository contains the source code for my personal website built using React. The website showcases my portfolio, blog, and contact information. 
+This repository contains the source code for my personal website, which I built using React, Redux and Typescript 
 
 ![Home](./images/Home.png)
 
